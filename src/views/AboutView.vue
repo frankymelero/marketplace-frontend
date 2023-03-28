@@ -1,5 +1,6 @@
 <script setup>
 import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -7,6 +8,7 @@ import PublicMenu from '../components/PublicMenu.vue';
   <div class="about">
     <h1>About Page</h1>
   </div>
+  <Footer></Footer>
 </template>
 
 <style>

@@ -1,5 +1,6 @@
 <script setup>
 import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
 </script>
 
 <template>
@@ -71,10 +72,6 @@ import PublicMenu from '../components/PublicMenu.vue';
             </ul>
         </div>
     </section>
-    <footer>
-        <div class="container">
-            <p>&copy; Easy Task Company</p>
-        </div>
-    </footer>
+  <Footer></Footer>
   </main>
 </template>
