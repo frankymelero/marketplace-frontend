@@ -9,12 +9,19 @@ import PublicMenu from '../components/PublicMenu.vue';
     <div class="login-form">
       <h1>Register Page</h1>
     <form action="">
+      <label for="name">Nombre</label><br/>
+      <input type="text" id="username" placeholder="Introduce el nombre"><br/>
       <label for="username">Usuario</label><br/>
       <input type="text" id="username" placeholder="Introduce el usuario"><br/>
+
+      <label for="username">E-mail</label><br/>
+      <input type="text" id="username" placeholder="Introduce el usuario"><br/>
       <label for="password">Contraseña</label><br/>
-      <input type="password" id="password" placeholder="Introduce la contraseña"><br/><br/>
+      <input type="password" id="password" placeholder="Introduce la contraseña"><br/>
+      <label for="password2">Repite la contraseña</label><br/>
+      <input type="password" id="password2" placeholder="Introduce la contraseña"><br/><br/>
       <input type="submit"><br>
-      <p>¿No tienes cuenta? <RouterLink to="/register">Registrate</RouterLink></p>
+    
     </form>
   </div>
   </div>
