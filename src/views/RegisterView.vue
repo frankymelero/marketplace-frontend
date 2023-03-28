@@ -7,7 +7,7 @@ import PublicMenu from '../components/PublicMenu.vue';
   <div class="about">
 
     <div class="login-form">
-      <h1>Login Page</h1>
+      <h1>Register Page</h1>
     <form action="">
       <label for="username">Usuario</label><br/>
       <input type="text" id="username" placeholder="Introduce el usuario"><br/>
