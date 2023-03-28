@@ -1,18 +1,10 @@
 <script setup>
-import { RouterLink } from 'vue-router';
+import PublicMenu from '../components/PublicMenu.vue';
 </script>
 
 <template>
   <main>
-    <header>
-        <div class="container">
-            <p class="logo">Easy Task</p>
-            <nav>
-              <RouterLink to="/">Servicios</RouterLink>
-              <RouterLink to="/about">Login</RouterLink> 
-            </nav>
-        </div>
-    </header>
+ <PublicMenu/>
     <section id="hero">
         <h1>Easy Task</h1>
         <form action="">

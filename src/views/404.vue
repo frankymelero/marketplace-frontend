@@ -1,11 +1,6 @@
-<script setup>
-import PublicMenu from '../components/PublicMenu.vue';
-</script>
-
 <template>
-   <PublicMenu/>
   <div class="about">
-    <h1>About Page</h1>
+    <h1>ERROR 404. Page not found!</h1>
   </div>
 </template>
 
