@@ -1,5 +1,5 @@
 <template>
-    <PublicMenu/>
+    <PrivateMenu/>
     <div class="account-view">
       <h1>Mi cuenta</h1>
       <div class="account-details">
@@ -33,7 +33,7 @@
   
   <script setup>
 import { ref, onMounted } from 'vue';
-import PublicMenu from '../components/PublicMenu.vue';
+import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
 
 // Datos

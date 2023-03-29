@@ -43,6 +43,16 @@ const router = createRouter({
       name: 'account',
       component: () => import('../views/AccountView.vue')
     },
+    {
+      path: '/home',
+      name: 'privateshop',
+      component: () => import('../views/PrivateShopView.vue')
+    },
+    {
+      path: '/about-us',
+      name: 'privateabout',
+      component: () => import('../views/PrivateAboutView.vue')
+    },
   ]
 })
 
