@@ -1,27 +1,84 @@
 <script setup>
-import PublicMenu from '../components/PublicMenu.vue';
-</script>
 
-<template>
-<PublicMenu/>
+
+</script><template>
+  <PublicMenu />
   <div class="about">
-
     <div class="login-form">
       <h1>Login</h1>
-    <form action="">
-      <label for="username">Usuario</label><br/>
-      <input type="text" id="username" placeholder="Introduce el usuario"><br/>
-      <label for="password">Contraseña</label><br/>
-      <input type="password" id="password" placeholder="Introduce la contraseña"><br/><br/>
-      <input type="submit"><br>
-      <p>¿No tienes cuenta? <RouterLink to="/register">Registrate</RouterLink></p>
-    </form>
+      <form @submit.prevent="handleLogin">
+        <label for="username">Usuario</label><br />
+        <input type="text" ref="usernameInput" v-model="state.username" name="username" placeholder="Introduce el usuario" required/><br />
+        <label for="password">Contraseña</label><br />
+        <input type="password" ref="passwordInput" v-model="state.password" name="password" placeholder="Introduce la contraseña" required/><br /><br />
+        <button type="submit" @click="handleApiCall">Enviar</button>
+        <p>
+          ¿No tienes cuenta? <RouterLink to="/register">Registrate</RouterLink>
+        </p><br/>
+        (testing) Usuario => {{  state.username }}
+      </form>
+    </div>
   </div>
-  </div>
-
-
-  
 </template>
+<script>
+import { reactive, ref } from 'vue';
+import { RouterLink } from 'vue-router';
+
+import PublicMenu from '../components/PublicMenu.vue';
+
+export default {
+  components: { RouterLink, PublicMenu },
+  setup() {
+    const state = reactive({
+      username: '',
+      password: '',
+    });
+    const usernameInput = ref(null);
+    const passwordInput = ref(null);
+    
+    const handleLogin = async () => {
+  if (!state.username || !state.password) {
+    alert('Por favor, introduce un nombre de usuario y una contraseña.');
+    return;
+  }
+
+  const url = `http://127.0.0.1:8080/users/validation/${state.username}/${state.password}`;
+  try {
+    const response = await fetch(url);
+    if (response.status === 200) {
+      const data = await response.json();
+      alert('¡Bienvenido ' + data.name + '!');
+      localStorage.setItem('username', state.username);
+      localStorage.setItem('logged', true);
+      // redireccionar a la pagina principal
+    } else {
+      alert('Usuario o contraseña incorrectos');
+    }
+  } catch (error) {
+    console.error(error);
+    alert('Ha ocurrido un error. Por favor, intenta nuevamente.');
+  }
+};
+ 
+
+    const handleApiCall = (event) => {
+      event.preventDefault();
+      console.log(`Usuario: ${state.username}`);
+      console.log(`Usuario: ${state.username}`);
+      handleLogin();
+    };
+    
+    return {
+      state, 
+      usernameInput,
+      passwordInput,
+      handleApiCall,
+    };
+  },
+};
+</script>
+
+
 
 <style scoped>
 .about {

@@ -1,34 +1,59 @@
-<script setup>
-import PublicMenu from '../components/PublicMenu.vue';
-import Footer from '../components/Footer.vue';
-</script>
+
 
 <template>
-<PublicMenu/>
+  <PublicMenu />
   <div class="about">
-
     <div class="login-form">
       <h1>Register</h1>
-    <form action="">
-      <label for="name">Nombre</label><br/>
-      <input type="text" id="username" placeholder="Introduce el nombre"><br/>
-      <label for="username">Usuario</label><br/>
-      <input type="text" id="username" placeholder="Introduce el usuario"><br/>
+      <form>
+        <label for="name">Nombre</label><br />
+        <input type="text" ref="nameInput" v-model="state.name" placeholder="Introduce el nombre" /><br />
+        <label for="username">Usuario</label><br />
+        <input type="text" ref="usernameInput" v-model="state.username" placeholder="Introduce el usuario" /><br />
 
-      <label for="username">E-mail</label><br/>
-      <input type="text" id="username" placeholder="Introduce el usuario"><br/>
-      <label for="password">Contraseña</label><br/>
-      <input type="password" id="password" placeholder="Introduce la contraseña"><br/>
-      <label for="password2">Repite la contraseña</label><br/>
-      <input type="password" id="password2" placeholder="Introduce la contraseña"><br/><br/>
-      <input type="submit"><br>
-    
-    </form>
+        <label for="email">E-mail</label><br />
+        <input type="text" ref="emailInput" v-model="state.email" placeholder="Introduce el email" /><br />
+        <label for="password">Contraseña</label><br />
+        <input type="password" ref="passwordInput" v-model="state.password" placeholder="Introduce la contraseña" /><br />
+        <label for="password2">Repite la contraseña</label><br />
+        <input type="password" ref="password2Input" v-model="state.password2" placeholder="Introduce la contraseña" /><br /><br />
+        <button type="submit" @click.prevent="handleSubmit">Enviar</button><br />
+        <p>Nombre introducido: {{ state.name }}</p>
+      </form>
+    </div>
   </div>
-  </div>
-
-  <Footer></Footer>
+  <Footer />
 </template>
+
+<script>
+import { reactive, ref } from 'vue';
+import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
+
+export default {
+  components: { PublicMenu, Footer },
+  setup() {
+    const state = reactive({
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      password2: '',
+    });
+
+    const nameInput = ref(null);
+    const handleSubmit = () => {
+      console.log(`Nombre introducido: ${state.name}`);
+    };
+
+    return {
+      state,
+      nameInput,
+      handleSubmit,
+    };
+  },
+};
+</script>
 
 <style scoped>
 .about {
