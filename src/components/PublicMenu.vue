@@ -4,7 +4,7 @@ import { RouterLink } from 'vue-router';
 <template>
    <header>
         <div class="container">
-            <p class="logo">Easy Task</p>
+            <p class="logo"><RouterLink to="/">Easy Task</RouterLink></p>
             <nav>
               <RouterLink to="/about">Sobre Nosotros</RouterLink> 
               <RouterLink to="/shop">Tienda</RouterLink>  
