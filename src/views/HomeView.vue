@@ -1,6 +1,7 @@
 <script setup>
 import PublicMenu from '../components/PublicMenu.vue';
 import Footer from '../components/Footer.vue';
+import { RouterLink } from 'vue-router';
 </script>
 
 <template>
@@ -9,8 +10,7 @@ import Footer from '../components/Footer.vue';
     <section id="hero">
         <h1>Easy Task</h1>
         <form action="">
-
-            <button>APLICA YA!</button>
+<button><RouterLink to="/login">APLICA YA!</RouterLink></button>          
         </form>
     </section>
 
