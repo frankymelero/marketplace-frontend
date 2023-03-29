@@ -9,7 +9,11 @@ html{
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
-    background-color:rgba(45, 82, 182, 0.253)
+    background-color:rgba(45, 82, 182, 0.253);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
 h1{ font-size: 3.7em;}
@@ -180,12 +184,14 @@ header a:hover{
 
 footer{
     background-color: rgb(105, 101, 101);
-    position: relative;
-    bottom: 0;
+    position: static;
     min-width: 100vw;
+    margin-top: auto;
 }
 
 footer p{
+    height: 100%;
+    max-width: 100vh;
     margin: 0;
     padding: 12px;
     color: rgb(248, 245, 245);
@@ -196,7 +202,6 @@ footer .container{
     justify-content: center;
     align-items: flex-end;
     display: flex
-
 }
 
 @media (min-width: 720px){
