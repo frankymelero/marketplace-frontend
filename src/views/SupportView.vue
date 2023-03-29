@@ -1,4 +1,7 @@
+
+
 <template>
+  <PublicMenu/>
     <div class="support">
       <h1>Soporte Técnico</h1>
       <p>
@@ -27,27 +30,27 @@
         </form>
       </div>
     </div>
+    <Footer></Footer>
   </template>
   
-  <script>
-  export default {
-    data() {
-      return {
-        form: {
-          name: "",
-          email: "",
-          message: "",
-        },
-      };
-    },
-    methods: {
-      submitForm() {
-        // Aquí puedes añadir la lógica para procesar el formulario, como enviarlo a una API o a un correo electrónico.
-        console.log("Formulario enviado:", this.form);
-        alert("Tu mensaje ha sido enviado. Nos pondremos en contacto contigo lo más pronto posible.");
-      },
-    },
-  };
+  <script setup>
+  import PublicMenu from '../components/PublicMenu.vue';
+  import Footer from '../components/Footer.vue';
+  import { ref } from 'vue';
+  
+  // Datos
+  const form = ref({
+    name: '',
+    email: '',
+    message: '',
+  });
+  
+  // Métodos
+  function submitForm() {
+    // Aquí puedes añadir la lógica para procesar el formulario, como enviarlo a una API o a un correo electrónico.
+    console.log('Formulario enviado:', form.value);
+    alert('Tu mensaje ha sido enviado. Nos pondremos en contacto contigo lo más pronto posible.');
+  }
   </script>
   
   <style scoped>
