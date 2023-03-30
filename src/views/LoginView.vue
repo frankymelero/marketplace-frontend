@@ -50,6 +50,7 @@ export default {
       localStorage.setItem('username', state.username);
       localStorage.setItem('logged', "si");
       localStorage.setItem('id', data.id);
+      localStorage.setItem('pass', state.password);
       router.push('/home');
     } else {
       alert('Usuario o contraseña incorrectos');

@@ -8,7 +8,7 @@
 
         <form @submit.prevent="updateEmail">
           <label for="email">Correo electrónico:</label>
-          <input type="email" id="email" v-model="user.email" required />
+          <input type="email" ref="emailInput" id="email" v-model="user.email" required />
   
           <button type="submit">Actualizar correo electrónico</button>
         </form>
@@ -39,11 +39,15 @@ import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
 import router from '../router/index.js';
+//Funciones fetch.
+
 
 
 // Datos
 const iduser = localStorage.getItem('id');
+const username = localStorage.getItem('username');
 const isLogged = ref(localStorage.getItem('logged'));
+let contra = localStorage.getItem('pass');
 const user = ref({
   email: '',
 });
@@ -54,14 +58,80 @@ const passwords = ref({
 });
 
 // Métodos
+
+async function updateUserEmail(email, username) {
+  const url = `http://127.0.0.1:8080/users/update/${username}`;
+
+  const data = {
+    id: iduser,
+    name: user.value.name,
+    username: user.value.username,
+    password: user.value.password,
+    email: email
+  };
+
+  try {
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    });
+    const result = await response.json();
+    if(result){
+      alert("Email modificado!");
+    }
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+
+async function updateUserPassword(oldpassword, oldpasswordinput, password1, password2) {
+
+  if(password1 !== password2){
+alert("Las contraseñas no coinciden");
+  }else if(oldpassword !== oldpasswordinput){
+
+  }else if(oldpassword === oldpasswordinput && password1 === password2){
+    const url = `http://127.0.0.1:8080/users/update/${username}`;
+
+const data = {
+  id: iduser,
+  name: user.value.name,
+  username: user.value.username,
+  password: password1,
+  email: user.value.email
+};
+
+try {
+  const response = await fetch(url, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  });
+  const result = await response.json();
+  if(result){
+    alert("Contraseña Modificada!");
+
+  }
+} catch (error) {
+  console.error(error);
+}
+  }else{
+    alert("Los datos no coinciden");
+  }
+  
+}
 function updateEmail() {
-  console.log('Actualizar correo electrónico');
-  // Aquí puedes llamar a tu API para actualizar el correo electrónico del usuario.
+ updateUserEmail(user.value.email, username);
 }
 
 function changePassword() {
-  console.log('Cambiar contraseña');
-  // Aquí puedes llamar a tu API para cambiar la contraseña del usuario.
+  updateUserPassword(contra, passwords.value.current, passwords.value.new, passwords.value.confirm)
 }
 
  
@@ -70,19 +140,20 @@ onMounted(() => {
   if (isLogged.value !== "si") {
     router.push('/login');
   }
-
+ 
   async function getUserData() {
     try {
       const response1 = await fetch(`http://127.0.0.1:8080/users/get-user/${iduser}`);
       const data1 = await response1.json();
       user.value = data1;
+      return data1;
 
     } catch (error) {
       console.error(error);
     }
   }
-
   getUserData();
+
 
 });
 
