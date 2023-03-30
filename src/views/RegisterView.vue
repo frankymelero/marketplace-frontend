@@ -30,6 +30,7 @@ import Footer from '../components/Footer.vue';
   <Footer></Footer>
 </template>
 
+
 <style scoped>
 .about {
   display: flex;
@@ -121,6 +122,9 @@ import Footer from '../components/Footer.vue';
 .btn-register:hover {
   background-color: #3e8e41;
 }
+
+
+
 </style>
 
 
