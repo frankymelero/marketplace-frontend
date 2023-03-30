@@ -4,7 +4,7 @@
         <div class="container">
             <p class="logo">Easy Task</p>
             <nav>
-              <RouterLink to="/home">Tienda</RouterLink>  
+              <RouterLink to="/home">Tu tienda</RouterLink>  
               <RouterLink to="/about-us">Sobre Nosotros</RouterLink> 
               <RouterLink to="/support">Soporte técnico</RouterLink>
               <RouterLink to="/account">Perfil de usuario</RouterLink>
