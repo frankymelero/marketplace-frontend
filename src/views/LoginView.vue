@@ -1,5 +1,10 @@
 <script setup>
 
+import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
+</script>
+
+
 
 </script><template>
   <PublicMenu />
@@ -79,12 +84,16 @@ export default {
 
 
 
+  <Footer></Footer>
+</template>
+
 <style scoped>
 .about {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+
 }
 
 .login-form {
@@ -100,6 +109,7 @@ export default {
   text-align: center;
   font-size: 2rem;
   margin-bottom: 20px;
+
 }
 
 .login-form label {
@@ -117,6 +127,23 @@ export default {
   border: 2px solid #cccccc;
   border-radius: 5px;
 }
+
+.login-form label {
+  display: block;
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+}
+
+.login-form input[type="text"],
+.login-form input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  border: 2px solid #cccccc;
+  border-radius: 5px;
+}
+
 
 .login-form input[type="submit"] {
   background-color: #614caf;
@@ -142,5 +169,7 @@ export default {
   color: #664caf;
 }
 
+
 </style>
+
 
