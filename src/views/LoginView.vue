@@ -2,7 +2,7 @@
   <PublicMenu />
   <div class="about">
     <div class="login-form">
-      <h1>Login</h1>
+      <h1>Iniciar Sesión</h1>
       <form @submit.prevent="handleLogin">
         <label for="username">Usuario</label><br />
         <input type="text" ref="usernameInput" v-model="state.username" name="username" placeholder="Introduce el usuario" required/><br />
@@ -89,6 +89,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  margin-bottom: -4.6vh;
 
 }
 
