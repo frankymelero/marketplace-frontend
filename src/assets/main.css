@@ -4,14 +4,17 @@
 
 html{
     scroll-behavior: smooth;
+    
 }
 
 body{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
     background-color:rgba(45, 82, 182, 0.253);
+
     min-height: 100vh;
     overflow-x: hidden;
+
 }
 
 h1{ font-size: 3.7em;}
@@ -151,6 +154,40 @@ header a:hover{
     background-image: url("./img/ecommerce.jpg");
     
 }
+.carta {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .carta img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .carta:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.35); /* Ajusta la opacidad aquí */
+  }
+  
+  .carta form {
+    position: relative;
+    z-index: 1;
+    color: #ffffff; /* Ajusta el color del texto aquí */
+    text-shadow: 1px 1px #000; /* Ajusta el sombreado del texto aquí */
+  }
+  
+  .carta h3 {
+    position: relative;
+    z-index: 1;
+    color: #fff; /* Ajusta el color del texto aquí */
+    text-shadow: 1px 1px #000; /* Ajusta el sombreado del texto aquí */
+  }
 
 #caracteristicas .container{
     text-align: center;
@@ -183,6 +220,10 @@ header a:hover{
 footer{
     background-color: rgb(105, 101, 101);
     position: static;
+
+    bottom: 0;
+    min-width: 100vw;
+
 }
 
 footer p{

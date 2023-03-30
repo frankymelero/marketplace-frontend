@@ -34,7 +34,9 @@ import Footer from '../components/Footer.vue';
 .completo { 
     text-align: center;
     align-items: center;
+
     background-color: #ffffff;
+
     font-family: 'Roboto', sans-serif;
     min-height: 100vh;
     display: flex;
@@ -66,7 +68,9 @@ import Footer from '../components/Footer.vue';
     max-width: 70%;
     margin: 0 auto;
     gap: 2rem;
+
     min-height: 70vh; 
+
 }
 .text{
     max-width: 50%;
@@ -83,5 +87,7 @@ import Footer from '../components/Footer.vue';
         max-width: 100%;
     }
 }
+
 </style>
+
 

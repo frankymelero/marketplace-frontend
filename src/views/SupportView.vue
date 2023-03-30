@@ -1,7 +1,7 @@
 
 
 <template>
-  <PublicMenu/>
+  <PrivateMenu/>
     <div class="support">
       <h1>Soporte Técnico</h1>
       <p>
@@ -34,7 +34,7 @@
   </template>
   
   <script setup>
-  import PublicMenu from '../components/PublicMenu.vue';
+  import PrivateMenu from '../components/PrivateMenu.vue';
   import Footer from '../components/Footer.vue';
   import { ref } from 'vue';
   

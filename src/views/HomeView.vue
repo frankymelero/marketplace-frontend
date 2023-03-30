@@ -75,3 +75,7 @@ import { RouterLink } from 'vue-router';
   <Footer></Footer>
   </main>
 </template>
+
+<style scoped>
+
+</style>
