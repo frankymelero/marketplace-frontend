@@ -1,21 +1,21 @@
 <template>
-    <PrivateMenu />
-    <div class="products-container">
-        <h2 class="products-title">Nuestros servicios</h2>
-        <div class="product-card">
-            <img class="product-logo" src="../assets/img/taskeasylogo.jpg" alt="Logo del producto">
+  <PrivateMenu />
+  <div class="products-container">
+    <h2 class="products-title">Nuestros servicios</h2>
+
+    <div v-for="product in products" :key="product.id" class="product-card">
+      <RouterLink :to="{ path: '/product-view/' + product.id }"><img class="product-logo" :src="product.urlimg" :alt="product.name" /></RouterLink> 
             <div class="product-info">
-                <h3 class="product-name">Diseño Web Básico y Estático</h3>
-                <p class="product-description">Impulsa tu negocio con nuestra oferta exclusiva en diseño web básico y
-                    estático en WordPress o plataforma similar.</p>
-                <p class="product-price">Precio: 120€ (20% de descuento ya aplicado)</p>
-                <p class="product-delivery">Entrega exprés: Entre 7 y 15 días hábiles</p>
+                <h3 class="product-name">{{ product.name }}</h3>
+                <p class="product-description">{{ product.description }}</p>
+                <p class="product-price">Precio: {{ product.price }}</p>
+                <p class="product-delivery">{{ product.entrega }}</p>
+              
             </div>
-        </div>
+        </div>   
     </div>
-    <Footer></Footer>
+  <Footer></Footer>
 </template>
-  
 <script setup>
 import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
@@ -23,14 +23,25 @@ import Footer from '../components/Footer.vue';
 import router from '../router/index.js';
 
 const isLogged = ref(localStorage.getItem('logged'));
+const products = ref([]);
 
 onMounted(() => {
-  if (isLogged.value !== "si") {
+  if (isLogged.value !== 'si') {
     router.push('/login');
+  } else {
+    fetch('http://127.0.0.1:8080/services/get-all')
+      .then(response => response.json())
+      .then(data => {
+        products.value = data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 });
-
 </script>
+
+
   
 <style scoped>
 .products-container {
@@ -58,17 +69,16 @@ onMounted(() => {
     
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
-    flex-wrap: wrap;
-    max-width: 70%;
+    max-width: 52%;
     margin: 0 auto;
     gap: 2rem; 
     padding: 1rem;
 }
 
 .product-logo {
-    max-width: 20vh;
+   width: 210px !important;
+   height: 210px !important;
     height: auto;
     margin-bottom: 1rem;
     border-radius: 10px;

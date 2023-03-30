@@ -53,6 +53,12 @@ const router = createRouter({
       name: 'privateabout',
       component: () => import('../views/PrivateAboutView.vue')
     },
+    {
+      path: '/product-view/:id',
+      name: 'product-view',
+      component: () => import('../views/ProductView.vue')
+    },
+    
   ]
 })
 
