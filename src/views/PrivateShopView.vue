@@ -17,8 +17,10 @@
 </template>
   
 <script setup>
+import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
+
 </script>
   
 <style scoped>
@@ -114,4 +116,3 @@ import Footer from '../components/Footer.vue';
   }
 }
 </style>
-  
