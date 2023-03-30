@@ -23,7 +23,7 @@
 <script>
 import { reactive, ref } from 'vue';
 import { RouterLink } from 'vue-router';
-
+import router from '../router/index.js';
 import PublicMenu from '../components/PublicMenu.vue';
 
 export default {
@@ -47,10 +47,10 @@ export default {
     const response = await fetch(url);
     if (response.status === 200) {
       const data = await response.json();
-      alert('¡Bienvenido ' + data.name + '!');
       localStorage.setItem('username', state.username);
-      localStorage.setItem('logged', true);
-      // redireccionar a la pagina principal
+      localStorage.setItem('logged', "si");
+      localStorage.setItem('id', data.id);
+      router.push('/home');
     } else {
       alert('Usuario o contraseña incorrectos');
     }
@@ -59,9 +59,7 @@ export default {
     alert('Ha ocurrido un error. Por favor, intenta nuevamente.');
   }
 };
- 
-
-    const handleApiCall = (event) => {
+     const handleApiCall = (event) => {
       event.preventDefault();
       console.log(`Usuario: ${state.username}`);
       console.log(`Usuario: ${state.username}`);

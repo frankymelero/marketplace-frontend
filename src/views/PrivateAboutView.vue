@@ -1,7 +1,3 @@
-<script setup>
-import PrivateMenu from '../components/PrivateMenu.vue';
-import Footer from '../components/Footer.vue';
-</script>
 
 <template>
    <PrivateMenu/>
@@ -59,6 +55,24 @@ Estamos comprometidos con la satisfacción de nuestros clientes y trabajamos inc
     </section>
   <Footer></Footer>
 </template>
+
+<script setup>
+import { ref, onMounted } from 'vue';
+import PrivateMenu from '../components/PrivateMenu.vue';
+import Footer from '../components/Footer.vue';
+import router from '../router/index.js';
+
+const isLogged = ref(localStorage.getItem('logged'));
+
+onMounted(() => {
+  if (isLogged.value !== "si") {
+    router.push('/login');
+  }
+});
+
+
+
+</script>
 
 <style scoped>
 @media (min-width: 1024px) {

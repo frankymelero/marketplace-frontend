@@ -4,6 +4,8 @@
       <h1>Mi cuenta</h1>
       <div class="account-details">
         <h3>Detalles de la cuenta</h3>
+        <p>Bienvenido {{ user.name }}.</p>
+
         <form @submit.prevent="updateEmail">
           <label for="email">Correo electrónico:</label>
           <input type="email" id="email" v-model="user.email" required />
@@ -31,12 +33,17 @@
     <Footer></Footer>
   </template>
   
-  <script setup>
+ 
+<script setup>
 import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
+import router from '../router/index.js';
+
 
 // Datos
+const iduser = localStorage.getItem('id');
+const isLogged = ref(localStorage.getItem('logged'));
 const user = ref({
   email: '',
 });
@@ -57,15 +64,34 @@ function changePassword() {
   // Aquí puedes llamar a tu API para cambiar la contraseña del usuario.
 }
 
-// Ciclo de vida
+ 
+
 onMounted(() => {
-  // Simulación de datos del usuario, reemplazar con la llamada a la API para obtener la información del usuario
-  user.value = {
-    email: 'juan.perez@example.com',
-  };
+  if (isLogged.value !== "si") {
+    router.push('/login');
+  }
+
+  async function getUserData() {
+    try {
+      const response1 = await fetch(`http://127.0.0.1:8080/users/get-user/${iduser}`);
+      const data1 = await response1.json();
+      user.value = data1;
+
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  getUserData();
+
 });
+
+
+
+
+
+
 </script>
-  
   <style scoped>
   .account-view {
     display: flex;
