@@ -1,11 +1,9 @@
-<script setup>
-import PublicMenu from '../components/PublicMenu.vue';
-import Footer from '../components/Footer.vue';
-</script>
+
 
 <template>
-<PublicMenu/>
+  <PublicMenu />
   <div class="about">
+
     <div class="register-form">
       <h1>Registro</h1>
       <form action="">
@@ -24,7 +22,77 @@ import Footer from '../components/Footer.vue';
     </div>
   </div>
   <Footer></Footer>
+
 </template>
+
+<script>
+import { reactive, ref } from 'vue';
+import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
+import router from '../router/index.js';
+export default {
+  components: { PublicMenu, Footer },
+  setup() {
+    const state = reactive({
+      name: '',
+      username: '',
+      email: '',
+      password: '',
+      password2: '',
+    });
+
+    const nameInput = ref(null);
+    const usernameInput = ref(null);
+    const emailInput = ref(null);
+    const passwordInput = ref(null);
+    const password2Input = ref(null);
+//Pendiente comprobación en la API si existe algún usuario que se llame igual, en el caso que lo exista no debe dar de alta y debe mostrar un mensaje que indique que el usuario ya está registrado.
+//Pendiente escapar, y forzar ciertos caracteres en cada campo, para que introduzcan la información en el formato que queremos, y no hayan cosas raras en la bbdd.
+
+    function createUser(name, username, email, password1, password2){
+  const url = 'http://127.0.0.1:8080/users/new';
+  const data = {
+    id: 0,
+    name: name,
+    username: username,
+    password: password1,
+    email: email
+  };
+
+  if(password1 === password2){
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(data)
+  })
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .then(alert("Registro completado!"))
+  .then(router.push('/login'))
+  .catch(error => console.error(error));
+}else{
+  alert("Las contraseñas no coinciden");
+}
+}
+
+const handleSubmit = () => {
+  createUser(state.name, state.username, state.email, state.password, state.password2);
+};
+
+    return {
+      state,
+      nameInput,
+      usernameInput,
+      emailInput,
+      passwordInput,
+      password2Input,
+      handleSubmit,
+    };
+  },
+};
+</script>
 
 <style scoped>
 .about {
