@@ -1,38 +1,51 @@
 <template>
-    <PrivateMenu/>
-    <div class="account-view">
-      <h1>Mi cuenta</h1>
-      <div class="account-details">
-        <h3>Detalles de la cuenta</h3>
-        <p>Bienvenido {{ user.name }}.</p>
+  <PrivateMenu />
+  <div class="account-view">
+    <h1>Mi cuenta</h1>
 
-        <form @submit.prevent="updateEmail">
+    <div class="card account-details">
+      <h3>Detalles de la cuenta</h3>
+      <p>Bienvenido {{ user.name }}.</p>
+
+      <form @submit.prevent="updateEmail">
+        <div class="form-group">
           <label for="email">Correo electrónico:</label>
           <input type="email" ref="emailInput" id="email" v-model="user.email" required />
-  
+        </div>
+
+        <div class="form-group">
           <button type="submit">Actualizar correo electrónico</button>
-        </form>
-      </div>
-      <div class="password-change">
-        <h3>Cambiar contraseña</h3>
-        <form @submit.prevent="changePassword">
+        </div>
+      </form>
+    </div>
+
+    <div class="card password-change">
+      <h3>Cambiar contraseña</h3>
+      <form @submit.prevent="changePassword">
+        <div class="form-group">
           <label for="current-password">Contraseña actual:</label>
           <input type="password" id="current-password" v-model="passwords.current" required />
-  
+        </div>
+
+        <div class="form-group">
           <label for="new-password">Nueva contraseña:</label>
           <input type="password" id="new-password" v-model="passwords.new" required />
-  
+        </div>
+
+        <div class="form-group">
           <label for="confirm-password">Confirmar nueva contraseña:</label>
           <input type="password" id="confirm-password" v-model="passwords.confirm" required />
-  
+        </div>
+
+        <div class="form-group">
           <button type="submit">Cambiar contraseña</button>
-        </form>
-      </div>
-      
+        </div>
+      </form>
     </div>
-    <Footer></Footer>
-  </template>
-  
+
+  </div>
+  <Footer></Footer>
+</template>
  
 <script setup>
 import { ref, onMounted } from 'vue';
@@ -163,40 +176,89 @@ onMounted(() => {
 
 
 </script>
-  <style scoped>
-  .account-view {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .account-details,
-  .password-change {
-    width: 100%;
-    max-width: 500px;
-    margin-bottom: 2rem;
-  }
-  
-  form {
-    display: flex;
-    flex-direction: column;
-  }
-  
-  label {
-    margin: 1rem 0 0.5rem;
-  }
-  
-  input {
-    width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-  }
-  
-  button {
-    margin-top: 1rem;
-    padding: 0.5rem;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  </style>
-  
+<style scoped>
+
+.account-view {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px 0;
+  text-align: center;
+}
+
+.account-view h1 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+.card {
+  margin-top: 30px;
+  display: inline-block;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin-bottom: 20px;
+  text-align: left;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.card h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #ccc;
+  font-size: 16px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  outline: none;
+  border-bottom: 2px solid #0077ff;
+}
+
+.form-group button[type="submit"] {
+  background-color: #0077ff;
+  border: none;
+  color: #fff;
+  padding: 10px 20px;
+  font-size: 18px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.form-group button[type="submit"]:hover {
+  background-color: #005ae6;
+}
+
+h1{
+  margin-top: 120px;
+}
+
+.account-details {
+  max-width: 600px;
+}
+.password-change {
+  max-width: 700px;
+}
+
+
+</style>

@@ -65,6 +65,7 @@ Estamos comprometidos con la satisfacción de nuestros clientes y trabajamos inc
 
 <style scoped>
 @media (min-width: 1024px) {
+
   .about {
     min-height: 100vh;
     display: flex;
