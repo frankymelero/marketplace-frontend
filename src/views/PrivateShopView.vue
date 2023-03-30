@@ -20,6 +20,15 @@
 import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
+import router from '../router/index.js';
+
+const isLogged = ref(localStorage.getItem('logged'));
+
+onMounted(() => {
+  if (isLogged.value !== "si") {
+    router.push('/login');
+  }
+});
 
 </script>
   

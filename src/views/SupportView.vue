@@ -26,12 +26,12 @@
             <textarea id="message" v-model="form.message" required></textarea>
           </div>
   
-          <button type="submit">Enviar</button>
+          <button type="submit" class="submit-button">Enviar</button>
         </form>
       </div>
     </div>
     <Footer></Footer>
-  </template>
+</template>
   <script setup>
     
   import PrivateMenu from '../components/PrivateMenu.vue';
@@ -64,38 +64,92 @@
   
   <style scoped>
   .support {
-    max-width: 600px;
+    padding: 30px 0;
+    text-align: center;
+  }
+
+  .support h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+
+  .support p {
+    font-size: 18px;
+    margin-bottom: 30px;
+  }
+
+  .support-form {
+    display: inline-block;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 30px;
     margin: 0 auto;
+    text-align: left;
+    width: 500px;
+    height: 400px;
   }
-  
-  .form-group {
-    margin-bottom: 1rem;
+
+  .support-form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
   }
-  
-  label {
+
+  .support-form .form-group {
+    margin-bottom: 20px;
+  }
+
+  .support-form label {
     display: block;
-    margin-bottom: 0.5rem;
+    font-size: 18px;
+    margin-bottom: 5px;
   }
-  
-  input,
-  textarea {
+
+  .support-form input[type="text"],
+  .support-form input[type="email"],
+  .support-form textarea {
     width: 100%;
-    padding: 0.5rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-  }
-  
-  button {
-    background-color: #007bff;
-    color: #fff;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
+    padding: 10px;
     border: none;
+    border-bottom: 2px solid #ccc;
+    font-size: 16px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+  }
+
+  .support-form input[type="text"]:focus,
+  .support-form input[type="email"]:focus,
+  .support-form textarea:focus {
+    outline: none;
+    border-bottom: 2px solid #0077ff;
+  }
+
+  .support-form button[type="submit"] {
+    background-color: #0077ff;
+    border: none;
+    color: #fff;
+    padding: 10px 20px;
+    font-size: 18px;
+    border-radius: 5px;
     cursor: pointer;
+    margin-left: -30px;
   }
-  
-  button:hover {
-    background-color: #0056b3;
+
+  .support-form button[type="submit"]:hover {
+    background-color: #005ae6;
   }
-  </style>
-  
+
+  h1{
+    margin-top: 120px;
+  }
+
+  footer{
+    margin-top: 20.9vh;
+  }
+
+  .support-form .submit-button {
+  width: 113.5%;
+  max-width: 6000px;
+  margin-top: -4px;
+}
+</style>

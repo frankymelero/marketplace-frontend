@@ -2,7 +2,7 @@
 <template>
    <header>
         <div class="container">
-            <p class="logo">Easy Task</p>
+            <p class="logo"><RouterLink to="/home">Easy Task</RouterLink></p>
             <nav>
               <RouterLink to="/home">Tu tienda</RouterLink>  
               <RouterLink to="/about-us">Sobre Nosotros</RouterLink> 
