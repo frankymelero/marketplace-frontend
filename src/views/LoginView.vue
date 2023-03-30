@@ -15,7 +15,7 @@
         (testing) Usuario => {{ state.username }}
       </form>
     </div>
-    
+
   </div>
   <Footer></Footer>
 </template>
@@ -73,6 +73,7 @@ export default {
       passwordInput,
       handleApiCall,
     };
+
   },
 };
 </script>
