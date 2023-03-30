@@ -65,9 +65,6 @@ import Footer from '../components/Footer.vue';
   border-radius: 5px;
 }
 
-
-}
-
 .login-form label {
   display: block;
   font-size: 1.2rem;
