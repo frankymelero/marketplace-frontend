@@ -1,12 +1,4 @@
-<script setup>
-
-import PublicMenu from '../components/PublicMenu.vue';
-import Footer from '../components/Footer.vue';
-</script>
-
-
-
-</script><template>
+<template>
   <PublicMenu />
   <div class="about">
     <div class="login-form">
@@ -24,16 +16,20 @@ import Footer from '../components/Footer.vue';
       </form>
     </div>
   </div>
+  <Footer></Footer>
 </template>
 <script>
 import { reactive, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import router from '../router/index.js';
 import PublicMenu from '../components/PublicMenu.vue';
+import Footer from '../components/Footer.vue';
 
 export default {
-  components: { RouterLink, PublicMenu },
+  
+  components: { RouterLink, PublicMenu, Footer},
   setup() {
+    
     const state = reactive({
       username: '',
       password: '',
@@ -80,12 +76,12 @@ export default {
     };
   },
 };
+
 </script>
 
 
 
-  <Footer></Footer>
-</template>
+
 
 <style scoped>
 .about {
