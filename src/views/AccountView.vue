@@ -53,6 +53,7 @@ import { ref, onMounted } from 'vue';
 import PrivateMenu from '../components/PrivateMenu.vue';
 import Footer from '../components/Footer.vue';
 import router from '../router/index.js';
+import { SHA256 } from "crypto-js";
 //Funciones fetch.
 
 
@@ -104,18 +105,22 @@ async function updateUserEmail(email, username) {
 
 async function updateUserPassword(oldpassword, oldpasswordinput, password1, password2) {
 
-  if(password1 !== password2){
+  const hashedoldPasswordinput = SHA256(oldpasswordinput).toString();
+  const hashedPassword = SHA256(password1).toString();
+  const  hashedPassword2= SHA256(password2).toString();
+   
+  if(hashedPassword !== hashedPassword2){
 alert("Las contraseñas no coinciden");
-  }else if(oldpassword !== oldpasswordinput){
-
-  }else if(oldpassword === oldpasswordinput && password1 === password2){
+  }else if(oldpassword !== hashedoldPasswordinput){
+    alert("Las contraseñas no coinciden");
+  }else if(oldpassword === hashedoldPasswordinput && hashedPassword === hashedPassword2){
     const url = `http://127.0.0.1:8080/users/update/${username}`;
 
 const data = {
   id: iduser,
   name: user.value.name,
   username: user.value.username,
-  password: password1,
+  password: hashedPassword,
   email: user.value.email
 };
 
