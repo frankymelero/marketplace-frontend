@@ -43,29 +43,46 @@ export default {
       password2: '',
     });
 
-
     const nameInput = ref(null);
     const usernameInput = ref(null);
     const emailInput = ref(null);
     const passwordInput = ref(null);
     const password2Input = ref(null);
 
-    function createUser(name, username, email, password1, password2){
+    async function checkUsername(username) {
+  const url = `http://localhost:8080/users/get-username/${username}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+    if (response.ok) {
+      return true;
+    } else {
+      return false;
+    }
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+}
 
+async function createUser(name, username, email, password1, password2){
   const hashedPassword = SHA256(password1).toString();
-  const hashedPassword2 = SHA256(password2).toString();
-console.log(username);
-  
-  const url = 'http://127.0.0.1:8080/users/new';
-  const data = {
-    id: 0,
-    name: name,
-    username: username,
-    password: hashedPassword,
-    email: email
-  };
+  const isUsernameTaken = await checkUsername(username);
+  console.log(isUsernameTaken);
 
-  if(hashedPassword === hashedPassword2){
+  if (isUsernameTaken) {
+    alert('Este nombre de usuario ya está registrado. Por favor, elige otro.');
+  } else if(password1 !== password2){
+    alert('Las contraseñas no coinciden.');
+  }else {
+    const url = 'http://127.0.0.1:8080/users/new';
+    const data = {
+      id: 0,
+      name: name,
+      username: username,
+      password: hashedPassword,
+      email: email
+    };
     fetch(url, {
       method: 'POST',
       headers: {
@@ -73,13 +90,11 @@ console.log(username);
       },
       body: JSON.stringify(data)
     })
-    .then(response => response.json())
-    .then(data => console.log(data))
-    .then(alert("Registro completado!"))
-    .then(router.push('/login'))
-    .catch(error => console.error(error));
-  } else {
-    alert("Las contraseñas no coinciden");
+      .then(response => response.json())
+      .then(data => console.log(data))
+      .then(alert("Registro completado!"))
+      .then(router.push('/login'))
+      .catch(error => console.error(error));
   }
 }
 
