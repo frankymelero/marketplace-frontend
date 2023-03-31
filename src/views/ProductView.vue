@@ -1,7 +1,7 @@
 <template>
     <PrivateMenu />
     <div class="product-view">
-      <p>Por hacer.</p>
+
       <div class="product-card">
        <div class="left-flex">
           <img class="product-logo" :src="products.urlimg" :alt="products.name" />
