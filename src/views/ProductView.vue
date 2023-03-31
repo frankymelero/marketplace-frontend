@@ -53,7 +53,7 @@
   
 const sendMail = () => {
   emailjs
-    .sendForm('service_13abpq5', 'template_5d30ygk', formu.value, 'UJc6rUhAnbit4DOGE')
+    .sendForm('service_ugh2jxp', 'template_5d30ygk', formu.value, 'UJc6rUhAnbit4DOGE')
     .then(
       () => {
         alert('Message sent!');
