@@ -12,7 +12,7 @@
         <p>
           ¿No tienes cuenta? <RouterLink to="/register">Registrate</RouterLink>
         </p><br/>
-        (testing) Usuario => {{ state.username }}
+
       </form>
     </div>
 
@@ -25,6 +25,8 @@ import { RouterLink } from 'vue-router';
 import router from '../router/index.js';
 import PublicMenu from '../components/PublicMenu.vue';
 import Footer from '../components/Footer.vue';
+import { SHA256 } from "crypto-js";
+
 
 export default {
   components: { RouterLink, PublicMenu, Footer },
@@ -42,7 +44,9 @@ export default {
     return;
   }
 
-  const url = `http://127.0.0.1:8080/users/validation/${state.username}/${state.password}`;
+  const hashedPassword = SHA256(state.password).toString();
+
+  const url = `http://127.0.0.1:8080/users/validation/${state.username}/${hashedPassword}`;
   try {
     const response = await fetch(url);
     if (response.status === 200) {
@@ -50,7 +54,7 @@ export default {
       localStorage.setItem('username', state.username);
       localStorage.setItem('logged', "si");
       localStorage.setItem('id', data.id);
-      localStorage.setItem('pass', state.password);
+      localStorage.setItem('pass', hashedPassword);
       router.push('/home');
     } else {
       alert('Usuario o contraseña incorrectos');

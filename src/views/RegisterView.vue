@@ -6,17 +6,17 @@
 
     <div class="register-form">
       <h1>Registro</h1>
-      <form action="">
+      <form  @submit.prevent="handleSubmit">
         <label for="name">Nombre</label><br/>
-        <input type="text" id="name" placeholder="Introduce el nombre"><br/>
+        <input  ref="nameInput" type="text" id="name" v-model="state.name" placeholder="Introduce el nombre"><br/>
         <label for="username">Usuario</label><br/>
-        <input type="text" id="username" placeholder="Introduce el usuario"><br/>
+        <input type="text" id="username" v-model="state.username" placeholder="Introduce el usuario"><br/>
         <label for="email">E-mail</label><br/>
-        <input type="email" id="email" placeholder="Introduce el correo electrónico"><br/>
+        <input type="email" id="email" v-model="state.email" placeholder="Introduce el correo electrónico"><br/>
         <label for="password">Contraseña</label><br/>
-        <input type="password" id="password" placeholder="Introduce la contraseña"><br/>
+        <input ref="passwordInput" type="password" id="password" v-model="state.password" placeholder="Introduce la contraseña"><br/>
         <label for="password2">Repite la contraseña</label><br/>
-        <input type="password" id="password2" placeholder="Introduce la contraseña"><br/><br/>
+        <input ref="passwordInput2" type="password" id="password2" v-model="state.password2" placeholder="Introduce la contraseña"><br/><br/>
         <input type="submit"><br>
       </form>
     </div>
@@ -30,6 +30,8 @@ import { reactive, ref } from 'vue';
 import PublicMenu from '../components/PublicMenu.vue';
 import Footer from '../components/Footer.vue';
 import router from '../router/index.js';
+import { SHA256 } from "crypto-js";
+
 export default {
   components: { PublicMenu, Footer },
   setup() {
@@ -41,44 +43,54 @@ export default {
       password2: '',
     });
 
+
     const nameInput = ref(null);
     const usernameInput = ref(null);
     const emailInput = ref(null);
     const passwordInput = ref(null);
     const password2Input = ref(null);
-//Pendiente comprobación en la API si existe algún usuario que se llame igual, en el caso que lo exista no debe dar de alta y debe mostrar un mensaje que indique que el usuario ya está registrado.
-//Pendiente escapar, y forzar ciertos caracteres en cada campo, para que introduzcan la información en el formato que queremos, y no hayan cosas raras en la bbdd.
 
     function createUser(name, username, email, password1, password2){
+
+  const hashedPassword = SHA256(password1).toString();
+  const hashedPassword2 = SHA256(password2).toString();
+console.log(username);
+  
   const url = 'http://127.0.0.1:8080/users/new';
   const data = {
     id: 0,
     name: name,
     username: username,
-    password: password1,
+    password: hashedPassword,
     email: email
   };
 
-  if(password1 === password2){
-  fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  })
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .then(alert("Registro completado!"))
-  .then(router.push('/login'))
-  .catch(error => console.error(error));
-}else{
-  alert("Las contraseñas no coinciden");
-}
+  if(hashedPassword === hashedPassword2){
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .then(alert("Registro completado!"))
+    .then(router.push('/login'))
+    .catch(error => console.error(error));
+  } else {
+    alert("Las contraseñas no coinciden");
+  }
 }
 
 const handleSubmit = () => {
-  createUser(state.name, state.username, state.email, state.password, state.password2);
+  createUser(
+    state.name, 
+    state.username, 
+    state.email, 
+    state.password, 
+    state.password2, 
+  );
 };
 
     return {
