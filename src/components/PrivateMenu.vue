@@ -16,13 +16,14 @@
 <script>
 import { RouterLink } from 'vue-router';
 import router from '../router/index.js';
+
 export default {
   components: { RouterLink, router},
   methods: {
     logout() {
   localStorage.setItem('username', '');
   localStorage.setItem('logged', false);
-  router.push('/login');
+  window.location.href="http://localhost:5173/login";
     },
   },
 };

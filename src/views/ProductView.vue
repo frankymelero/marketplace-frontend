@@ -14,19 +14,20 @@
           
           <input type="button" id="mostrarformulario" value="Solicitar servicio" @click="mostrarFormulario"/>
 
-          <form id="formulariomensaje">
+          
+          <form ref="formu" id="formulariomensaje" @submit.prevent="submitForm">
           <div id="formulario">
          
                 <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre" :value="user.name" required />
+                <input type="text" name="name" id="nombre" :value="user.name"  required />
                 <label for="email">E-mail: </label>
-                <input type="text" id="email" :value="user.email" required /><br>
+                <input type="text" name="email" id="email" :value="user.email" required /><br>
                 <textarea name="message" id="mensaje" cols="60" rows="15"></textarea>
         
             
           </div>
-          
-          <input type="button" id="sendbutton" value="Enviar solicitud">
+            
+          <button type="submit" id="sendbutton" >Enviar</button>
         </form>
         </div>
       </div>   
@@ -35,23 +36,46 @@
   </template>
   
   <script setup>
+      import emailjs from 'emailjs-com';
+    import { ref, onMounted } from 'vue';
   import PrivateMenu from '../components/PrivateMenu.vue';
   import Footer from '../components/Footer.vue';
   import { useRoute } from 'vue-router';
-  import { ref, onMounted } from 'vue';
+
   
   const iduser = localStorage.getItem("id");
   const products = ref([]);
   const user = ref([]);
-
+  const inputFieldReset = ref(null);
+  const formu = ref(null);
   const route = useRoute();
   
+  
+const sendMail = () => {
+  emailjs
+    .sendForm('service_13abpq5', 'template_5d30ygk', formu.value, 'UJc6rUhAnbit4DOGE')
+    .then(
+      () => {
+        alert('Message sent!');
+        inputFieldReset.value = ' ';
+      },
+      (error) => {
+        alert('Message not sent', error);
+      }
+    );
+};
+
   function mostrarFormulario() {
   const formulario = document.getElementById('formulariomensaje');
   const botonMostrar = document.getElementById('mostrarformulario');
   formulario.style.display = 'block';
   botonMostrar.style.display = 'none';
 }
+
+function submitForm() {
+
+      sendMail();
+  }
 
   onMounted(() => {
 const id = route.params.id;
@@ -105,7 +129,7 @@ console.log(id);
 .product-logo{
     height: 40vh;
     margin-top: 10vh;
-    border: 3px solid rgba(0,0,0,0.3)
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
  
 }
 
