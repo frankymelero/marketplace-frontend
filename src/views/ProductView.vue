@@ -109,17 +109,23 @@ console.log(id);
 <style scoped>
 
 .product-view{
-    min-height: 100vh;
+  min-height: 100vh;
     padding-top: 20vh;
     text-align: left;
+    background-color:rgba(45, 82, 182, 0.253);
+    background-size: cover;
    
 }
 .product-card{
     display:flex;
-    background-color: white;
-    max-height: 61vh;
-    padding-right: 5vw;
+    background-color: rgba(5, 22, 255, 0.096);
+    border-radius: 20px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.8);
+    overflow: hidden;
+    margin-left: 30px;
+    margin-right: 30px;
 }
+
 .left-flex{
     min-height: 61vh;
     min-width: 50vw;
@@ -127,10 +133,26 @@ console.log(id);
     justify-content: center;
 }
 .product-logo{
-    height: 40vh;
-    margin-top: 10vh;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+    height: 45vh;
+    margin-top: 7vh;
+    box-shadow: 8px 5px 4px rgba(0, 0, 0, 0.6);
  
+}
+
+.product-info{
+  margin-top: 30px;
+}
+
+
+.product-description, .product-price, .product-delivery{
+  margin-top: 60px;
+  font-size: 21px;
+  font-family:Arial, Helvetica, sans-serif;
+  color: #333333;
+  line-height: 1.3;
+  text-align: justify;
+  text-justify: inter-word;
+  text-shadow: 2px 2px 2px rgba(0,0,0,0.2);
 }
 
 label[for]{
@@ -145,7 +167,7 @@ label[for=email]{
     height: 50px;
     border: 2px solid black;
     border-radius: 40px;
-    background-color: #007bff;
+    background-color: #007bffd0;
     color: white;
     font-size: 29px;
     transition: 0.4s;
@@ -157,10 +179,10 @@ label[for=email]{
     margin-top: 1vh;
   }
   #sendbutton:hover{
- 
     transition: 0.4s;
-    box-shadow: 0px 2px 5px black;
+    box-shadow: 0px 2px 9px black;
     cursor: pointer;
+
   }
 
   form#formulariomensaje{
@@ -172,10 +194,13 @@ label[for=email]{
     height: 50px;
     border: 2px solid black;
     border-radius: 40px;
-    background-color: #007bff;
-    color: white;
+    background-color: rgba(245, 209, 5, 0.329);
+    color: rgb(255, 255, 255);
     font-size: 29px;
     transition: 0.4s;
     cursor:pointer;
+  }
+  #mostrarformulario:hover{
+    color:rgb(68, 0, 255)
   }
 </style>
